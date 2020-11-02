@@ -17,7 +17,7 @@ Deep learning is a subfield of machine learning which involves training neural n
 - handwriting transcription
 - translation
 - text-to-speech conversion
-- Digital assistants such as Google Now and Amazon Alexa
+- Digital assistants such as Alexa
 - autonomous driving
 - ad targeting, as used by Google, Baidu, and Bing
 - natural-language questions
@@ -41,7 +41,7 @@ The "Perceptron" the first trainable neural network, was proposed by Frank Rosen
 
 ![peceptron](img/nn-diagram.png)
 
-The perceptron in its original form took binary inputs and predicted a binary outcome.  Similar to how a biological neuron's action potential fires if a certain electrical input signal were strong enough, it proposed an activation function looked like so:
+The perceptron in its original form took binary inputs and predicted a binary outcome.  Similar to how a biological neuron's action potential fires if a certain electrical input signal were strong enough, it proposed an activation which converted the input into an all-or-none output.  The activation function looked like so:
 
 \begin{eqnarray}
   \mbox{output} & = & \left\{ \begin{array}{ll}
@@ -119,10 +119,6 @@ def sigmoid(z):
 sigmoid_neuron_output = [sigmoid(output) for output in z]
 ```
 
-    The autoreload extension is already loaded. To reload it, use:
-      %reload_ext autoreload
-
-
 
 ```python
 # The output of our sigmoid across varying inputs takes on an S shape
@@ -138,15 +134,15 @@ ax.set_title('Output of Sigmoid Neuron');
 ![png](index_files/index_23_0.png)
 
 
-Small changes in the weights will result in small changes in the output. We will be able to gauge the direction and magnitude of this change via partial derivatives calculated during back propegation, which we will cover below. This will allow for our neural networks.
+Small changes in the weights will result in small changes in the output. We will be able to gauge the direction and magnitude of this change via partial derivatives calculated during back propagation, which we will cover below. This will allow for our neural networks.
 
 <a id="fprop"></a>
 
 [TOC](#toc)
 
-# Forward Propogation
+# Forward Propagation
 
-Before we get to back propogation, we have to first understand forward propogation.
+Before we get to back propogation, we have to first understand forward propagation.
 
 Foward propogation is the process by which the input signal of our data passes through the neurons stacked in the successive layers of our network. The end result of which is a prediction in the units of the sample space of potential outcomes, which will be used to guage the accuracy of the model and update the parameters during back propogation.
 
@@ -240,7 +236,79 @@ Our neural networks will require us to unrow these pixel representations. In the
 ```python
 # Unrow the eight_by_eight image
 
+eight_by_eight_image.reshape(-1,1)
+
 ```
+
+
+
+
+    array([[ 0.],
+           [ 0.],
+           [ 5.],
+           [13.],
+           [ 9.],
+           [ 1.],
+           [ 0.],
+           [ 0.],
+           [ 0.],
+           [ 0.],
+           [13.],
+           [15.],
+           [10.],
+           [15.],
+           [ 5.],
+           [ 0.],
+           [ 0.],
+           [ 3.],
+           [15.],
+           [ 2.],
+           [ 0.],
+           [11.],
+           [ 8.],
+           [ 0.],
+           [ 0.],
+           [ 4.],
+           [12.],
+           [ 0.],
+           [ 0.],
+           [ 8.],
+           [ 8.],
+           [ 0.],
+           [ 0.],
+           [ 5.],
+           [ 8.],
+           [ 0.],
+           [ 0.],
+           [ 9.],
+           [ 8.],
+           [ 0.],
+           [ 0.],
+           [ 4.],
+           [11.],
+           [ 0.],
+           [ 1.],
+           [12.],
+           [ 7.],
+           [ 0.],
+           [ 0.],
+           [ 2.],
+           [14.],
+           [ 5.],
+           [10.],
+           [12.],
+           [ 0.],
+           [ 0.],
+           [ 0.],
+           [ 0.],
+           [ 6.],
+           [13.],
+           [10.],
+           [ 0.],
+           [ 0.],
+           [ 0.]])
+
+
 
 
 ```python
@@ -575,7 +643,7 @@ For our present problem, we would like to make a prediction of a number in the r
 
 [source](https://www.javatpoint.com/tensorflow-mnist-dataset-in-cnn)
 
-To do so, we use an activation function called Softmax. The Softmax activation function has as a neuron devoted to every possible outcome.  In our present example, the softmax has 10 neurons, 1 for each number between 0 and 9. 
+To do so, we use an activation function called softmax. The softmax activation function has as a neuron devoted to every possible outcome.  In our present example, the softmax has 10 neurons, 1 for each number between 0 and 9. 
 
 Each neuron in the last hidden layer passes a signal to every neuron in the Softmax output layer, which then outputs a probability between 0 and 1 using the formula below:
 
@@ -682,7 +750,7 @@ We won't look at the chain-rule calculus which goes into the parameter update ca
 
 ## Batch, minibatch, and stochastic gradient descent
 
-There are three main flavors of gradient descent that we can implement in our networks. Each differs by the amount of data pushed through the system in one round of forward propogation. In all cases, an **epoch** refers to the end point of one cycle of data where all data points have passed through the netowrk.  
+There are three main flavors of gradient descent that we can implement in our networks. Each differs by the amount of data pushed through the system in one round of forward propogation. In all cases, an **epoch** refers to the end point of one cycle of data where all data points have passed through the network.  
 
 ### Batch
 
@@ -697,7 +765,7 @@ For mini-batch gradient descent, we randomly choose a subset of our data, push i
 Stochastic is a synonym for random.  Stochastic gradient descent picks a single example from our training set, passes it through the the network, updates the parameters, and proceedes to the next example.
 
 
-There are pros and cons of each type of gradient descent (see this [blog post](https://machinelearningmastery.com/gentle-introduction-mini-batch-gradient-descent-configure-batch-size/). For now, we will say that using mini-batch gradient descent can substantially speed up learning. 
+There are pros and cons of each type of gradient descent (see this [blog post])(https://machinelearningmastery.com/gentle-introduction-mini-batch-gradient-descent-configure-batch-size/). For now, we will say that using mini-batch gradient descent can substantially speed up learning. 
 
 
 # Brief Note on Optimizers
