@@ -10,6 +10,22 @@
 3. [Back Propogation](#backprop)
 
 
+Deep learning is a subfield of machine learning which involves training neural networks to solve complex problems which the algorithms we have introduced in earlier phases cannot handle.  Deep learning has made progress solving many important things, including:
+
+- image classification
+- speech recognition
+- handwriting transcription
+- translation
+- text-to-speech conversion
+- Digital assistants such as Google Now and Amazon Alexa
+- autonomous driving
+- ad targeting, as used by Google, Baidu, and Bing
+- natural-language questions
+
+[source](https://livebook.manning.com/book/deep-learning-with-python/chapter-1/59)
+
+The "deep" in deep learning refers to neural networks which had multiple layers of neurons.  The more layers, the deeper the network. Each successive layer can be thought as finding more complex relationships within our data.
+
 <a id="Neurons"></a>
 
 # Individual Neurons
@@ -67,7 +83,7 @@ ax.set_ylabel('Output');
 ```
 
 
-![png](index_files/index_11_0.png)
+![png](index_files/index_14_0.png)
 
 
 Thinking about the activation function above, imaging making a small change to a beta coefficient.  The small change results in a small change in z, but because the slope of the activation function is zero in all places except when z = 0, we will not be able to tell what effect small changes in our weights has on our output. 
@@ -119,7 +135,7 @@ ax.set_title('Output of Sigmoid Neuron');
 ```
 
 
-![png](index_files/index_20_0.png)
+![png](index_files/index_23_0.png)
 
 
 Small changes in the weights will result in small changes in the output. We will be able to gauge the direction and magnitude of this change via partial derivatives calculated during back propegation, which we will cover below. This will allow for our neural networks.
@@ -192,7 +208,7 @@ ax.set_title("An 8 x 8 pixel Representation\n of the Number Zero");
 ```
 
 
-![png](index_files/index_42_0.png)
+![png](index_files/index_45_0.png)
 
 
 
@@ -580,7 +596,7 @@ ax.set_title("An 8 x 8 pixel Representation\n of the Number Zero");
 ```
 
 
-![png](index_files/index_70_0.png)
+![png](index_files/index_73_0.png)
 
 
 Then suppose the first neuron learns to identify circles in the top 1/2 of our grid
@@ -594,7 +610,7 @@ ax.set_title("An 8 x 8 pixel Representation\n of the Number Zero");
 ```
 
 
-![png](index_files/index_72_0.png)
+![png](index_files/index_75_0.png)
 
 
 [toc](#toc)
@@ -617,7 +633,7 @@ ax.set_title("An 8 x 8 pixel Representation\n of the Number Zero");
 ```
 
 
-![png](index_files/index_76_0.png)
+![png](index_files/index_79_0.png)
 
 
 We can imagine one node in hidden layer 1 finding a horizontal stroke representing the top half of the circle, and a node in the same layer identifying the bottom half.  Imagine a node in the next layer associating strong positive weights to these inputs. It's firing then will come to represent the upper circle as a whole. 
@@ -795,7 +811,7 @@ plt.plot(X, y_tanh);
 ```
 
 
-![png](index_files/index_110_0.png)
+![png](index_files/index_113_0.png)
 
 
 tanh a shifted version of the sigmoid. The inflection point passes through 0,0 instead of 0,.5, and the output is between -1 and 1.  This means the mean of the output is centered around 0, which can make learning in the next layer easier.  tanh is almost always better in a **hidden layer** than the sigmoid because if speeds up learning [see here](https://stats.stackexchange.com/questions/330559/why-is-tanh-almost-always-better-than-sigmoid-as-an-activation-function). For the output layer, however, sigmoid makes sense for binary outcomes.  If we require an output of 0 or 1, it makes sense for the activation function to output between 0 and 1, rather than -1 and 1.
@@ -821,7 +837,7 @@ plt.plot(X, y_relu);
 ```
 
 
-![png](index_files/index_115_0.png)
+![png](index_files/index_118_0.png)
 
 
 ReLU is a commonly used and effective activation function because of speed.  Given that the **output** is zero when negative, some nodes become inactive (i.e. produce an output of 0).  Zero outputs take little computational power. Also, the constant gradient leads to faster learning in comparison to sigmoid and tanh, which come close to 0 with large positive and negative values.  Since the speed of our network is linked to the derivative, a derivative close to zero will result in very slow learning.
