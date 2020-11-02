@@ -10,6 +10,22 @@
 3. [Back Propogation](#backprop)
 
 
+Deep learning is a subfield of machine learning which involves training neural networks to solve complex problems which the algorithms we have introduced in earlier phases cannot handle.  Deep learning has made progress solving many important things, including:
+
+- image classification
+- speech recognition
+- handwriting transcription
+- translation
+- text-to-speech conversion
+- Digital assistants such as Google Now and Amazon Alexa
+- autonomous driving
+- ad targeting, as used by Google, Baidu, and Bing
+- natural-language questions
+
+[source](https://livebook.manning.com/book/deep-learning-with-python/chapter-1/59)
+
+The "deep" in deep learning refers to neural networks which had multiple layers of neurons.  The more layers, the deeper the network. Each successive layer can be thought as finding more complex relationships within our data.
+
 <a id="Neurons"></a>
 
 # Individual Neurons
