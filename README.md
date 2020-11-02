@@ -89,15 +89,23 @@ If we pass the result of our linear equation to the sigmoid function, the output
 
 
 ```python
+import math
 # This is always a good idea
 %load_ext autoreload
 %autoreload 2
 
-import solution as sol
-from solution import sigmoid
+
+def sigmoid(z):
+    
+    return 1/(1+math.e**(-z))
+    
 
 sigmoid_neuron_output = [sigmoid(output) for output in z]
 ```
+
+    The autoreload extension is already loaded. To reload it, use:
+      %reload_ext autoreload
+
 
 
 ```python
